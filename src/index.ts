@@ -2,6 +2,10 @@ import express from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
 import authRoutes from './routes/auth'
+import evalRoutes from './routes/evaluations'
+import primaryDataRoutes from './routes/primaryData'
+import stage1Routes from './routes/stage1'
+
 
 dotenv.config()
 
@@ -11,6 +15,9 @@ const PORT = process.env.PORT || 3001
 app.use(cors())
 app.use(express.json())
 app.use('/auth', authRoutes)
+app.use('/evaluations', evalRoutes)
+app.use('/evaluations', primaryDataRoutes)
+app.use('/evaluations', stage1Routes)
 
 // Health check
 app.get('/health', (req, res) => {
