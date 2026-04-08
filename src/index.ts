@@ -5,6 +5,7 @@ import authRoutes from './routes/auth'
 import evalRoutes from './routes/evaluations'
 import primaryDataRoutes from './routes/primaryData'
 import stage1Routes from './routes/stage1'
+import stage2Routes from './routes/stage2'
 
 
 dotenv.config()
@@ -18,6 +19,7 @@ app.use('/auth', authRoutes)
 app.use('/evaluations', evalRoutes)
 app.use('/evaluations', primaryDataRoutes)
 app.use('/evaluations', stage1Routes)
+app.use('/evaluations', stage2Routes)
 
 // Health check
 app.get('/health', (req, res) => {
