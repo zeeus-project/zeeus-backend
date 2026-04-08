@@ -7,6 +7,7 @@ import primaryDataRoutes from './routes/primaryData'
 import stage1Routes from './routes/stage1'
 import stage2Routes from './routes/stage2'
 import financialRoutes from './routes/financial'
+import sdgRoutes from './routes/sdg'
 
 
 dotenv.config()
@@ -22,6 +23,7 @@ app.use('/evaluations', primaryDataRoutes)
 app.use('/evaluations', stage1Routes)
 app.use('/evaluations', stage2Routes)
 app.use('/evaluations', financialRoutes)
+app.use('/evaluations', sdgRoutes)
 
 
 // Health check
