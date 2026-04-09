@@ -54,9 +54,9 @@ export const getRecommendations = async (req: Request, res: Response): Promise<v
             probability: risk.probability,
             impact: risk.impact,
             score: parseFloat(risk.score),
-            rating: parseFloat(risk.score) >= 3 ? 'High' :
-                    parseFloat(risk.score) >= 2 ? 'Medium' :
-                    parseFloat(risk.score) >= 1 ? 'Low' : 'Negligible',
+            rating: parseFloat(risk.score) >= 3 ? 'Critical' :
+            parseFloat(risk.score) >= 2 ? 'Severe' :
+            parseFloat(risk.score) >= 1 ? 'Moderate' : 'Sustainable',
             probabilityContext: RISK_RECOMMENDATIONS[probKey] || '',
             impactContext: RISK_RECOMMENDATIONS[impactKey] || '',
             recommendation: RISK_RECOMMENDATIONS[generalKey] || ''
@@ -75,9 +75,9 @@ export const getRecommendations = async (req: Request, res: Response): Promise<v
             likelihood: opp.likelihood,
             impact: opp.impact,
             score: parseFloat(opp.score),
-            rating: parseFloat(opp.score) >= 3 ? 'High' :
-                    parseFloat(opp.score) >= 2 ? 'Medium' :
-                    parseFloat(opp.score) >= 1 ? 'Low' : 'Negligible',
+            rating: parseFloat(opp.score) >= 3 ? 'Great' :
+            parseFloat(opp.score) >= 2 ? 'Sustainable' :
+            parseFloat(opp.score) >= 1 ? 'Reasonable' : 'Small',
             likelihoodContext: OPPORTUNITY_RECOMMENDATIONS[likelihoodKey] || '',
             impactContext: OPPORTUNITY_RECOMMENDATIONS[impactKey] || '',
             recommendation: OPPORTUNITY_RECOMMENDATIONS[generalKey] || ''
@@ -86,8 +86,8 @@ export const getRecommendations = async (req: Request, res: Response): Promise<v
 
     // 5. Separate material topics for priority recommendations
     const materialTopics = stage1Recommendations.filter(t => t.isMaterial)
-    const highRisks = riskRecommendations.filter(r => r.rating === 'High')
-    const highOpportunities = opportunityRecommendations.filter(o => o.rating === 'High')
+    const highRisks = riskRecommendations.filter(r => r.rating === 'Critical' || r.rating === 'Severe')
+    const highOpportunities = opportunityRecommendations.filter(o => o.rating === 'Great' || o.rating === 'Sustainable')
 
     // 6. Return everything
     res.status(200).json({

@@ -1,6 +1,25 @@
 import { Request, Response } from 'express'
 import pool from '../db/index'
 
+const SDG_TITLES: Record<number, string> = {
+    1: 'No Poverty',
+    2: 'Zero Hunger',
+    3: 'Good Health and Well-being',
+    4: 'Quality Education',
+    5: 'Gender Equality',
+    6: 'Clean Water and Sanitation',
+    7: 'Affordable and Clean Energy',
+    8: 'Decent Work and Economic Growth',
+    9: 'Industry, Innovation and Infrastructure',
+    10: 'Reduced Inequalities',
+    11: 'Sustainable Cities and Communities',
+    12: 'Responsible Consumption and Production',
+    13: 'Climate Action',
+    14: 'Life Below Water',
+    15: 'Life on Land',
+    16: 'Peace, Justice and Strong Institutions',
+    17: 'Partnerships for the Goals'
+}
 
 const SSEF_MATRIX: Record<string, {
     goal: string
@@ -185,7 +204,6 @@ const SSEF_MATRIX: Record<string, {
 export const getSummary = async (req: Request, res: Response): Promise<void> => {
     const evaluationId = parseInt(req.params.id as string)
 
-    // 1. Fetch primary data
     const result = await pool.query(
         'SELECT * FROM primary_data WHERE evaluation_id = $1',
         [evaluationId]
@@ -197,8 +215,6 @@ export const getSummary = async (req: Request, res: Response): Promise<void> => 
     }
 
     const primary = result.rows[0]
-
-    // 2. Look up stage info from SSEF Matrix
     const stageInfo = SSEF_MATRIX[primary.startup_stage]
 
     if (!stageInfo) {
@@ -206,24 +222,25 @@ export const getSummary = async (req: Request, res: Response): Promise<void> => 
         return
     }
 
-    // 3. Pick guidance based on product or service
     const guidance = primary.product_or_service === 'Product'
         ? stageInfo.productGuidance
         : stageInfo.serviceGuidance
 
-    // 4. Return the summary
     res.status(200).json({
-    startupStage: primary.startup_stage,
-    country: primary.country,
-    businessCategory: primary.business_category,
-    productOrService: primary.product_or_service,
-    innovationApproach: primary.innovation_approach,
-    stageGoal: stageInfo.goal,
-    sustainabilityGoals: stageInfo.sustainabilityGoals,
-    guidance,
-    activities: stageInfo.activities,
-    keyActions: stageInfo.keyActions,
-    initialSDGs: stageInfo.sdgs,
-    note: 'These SDGs are based on your stage and industry. They will be refined as you complete Stage I and II.'
-})
+        startupStage: primary.startup_stage,
+        country: primary.country,
+        businessCategory: primary.business_category,
+        productOrService: primary.product_or_service,
+        innovationApproach: primary.innovation_approach,
+        stageGoal: stageInfo.goal,
+        sustainabilityGoals: stageInfo.sustainabilityGoals,
+        guidance,
+        activities: stageInfo.activities,
+        keyActions: stageInfo.keyActions,
+        initialSDGs: stageInfo.sdgs.map(sdg => ({
+            sdg_number: sdg,
+            sdg_title: SDG_TITLES[sdg]
+        })),
+        note: 'These SDGs are based on your stage and industry. They will be refined as you complete Stage I and II.'
+    })
 }
