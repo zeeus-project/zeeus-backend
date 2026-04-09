@@ -14,6 +14,9 @@ import aiRecommendationsRoutes from './routes/aiRecommendations'
 import calculateRoutes from './routes/calculate'
 import summaryRoutes from './routes/summary'
 import adminRoutes from './routes/admin'
+import sdgTargetsRoutes from './routes/sdgTargets'
+import referenceRoutes from './routes/referenceData'
+
 
 
 dotenv.config()
@@ -36,6 +39,8 @@ app.use('/evaluations', aiRecommendationsRoutes)
 app.use('/calculate', calculateRoutes)
 app.use('/evaluations', summaryRoutes)
 app.use('/admin', adminRoutes)
+app.use('/evaluations', sdgTargetsRoutes)
+app.use('/reference', referenceRoutes)
 app.use(cors())
 
 

@@ -1,6 +1,15 @@
 import { Request, Response } from 'express'
 import pool from '../db/index'
 
+const getInterpretation = (score: number, isApplicable: boolean): string => {
+    if (!isApplicable) return 'Not relevant for your business model'
+    if (score === 0) return 'Not relevant for your business model'
+    if (score < 1) return 'Minimal impact, risk, or opportunity — no action needed'
+    if (score < 2) return 'Minor relevance — monitor and reassess later'
+    if (score < 2.5) return 'Relevant topic — review recommendations'
+    return 'High relevance — take strategic action'
+}
+
 export const getResults = async (req: Request, res: Response): Promise<void> => {
     const evaluationId = parseInt(req.params.id as string)
 
@@ -51,16 +60,22 @@ export const getResults = async (req: Request, res: Response): Promise<void> => 
     const highRisks = risks.filter((r: any) => parseFloat(r.score) >= 3)
     const highOpportunities = opportunities.filter((o: any) => parseFloat(o.score) >= 3)
 
+    const highestRiskScore = risks.filter((r: any) => !r.is_applicable === false).length * 4
+    const highestOpportunityScore = opportunities.filter((o: any) => !o.is_applicable === false).length * 4
+
+
     const environmentalChartData = environmental.map((t: any) => ({
-        topic: t.topic,
-        score: parseFloat(t.score),
-        material: t.is_material
+    topic: t.topic,
+    score: parseFloat(t.score),
+    material: t.is_material,
+    interpretation: getInterpretation(parseFloat(t.score), t.is_applicable)
     }))
 
     const socialChartData = social.map((t: any) => ({
-        topic: t.topic,
-        score: parseFloat(t.score),
-        material: t.is_material
+    topic: t.topic,
+    score: parseFloat(t.score),
+    material: t.is_material,
+    interpretation: getInterpretation(parseFloat(t.score), t.is_applicable)
     }))
 
     const riskChartData = risks.map((r: any) => ({
@@ -115,15 +130,19 @@ export const getResults = async (req: Request, res: Response): Promise<void> => 
             socialChartData
         },
         stage2: {
-            risks,
-            opportunities,
-            highRisks,
-            highOpportunities,
-            riskChartData,
-            opportunityChartData,
-            riskRatingCounts,
-            opportunityRatingCounts
-        },
+        risks,
+        opportunities,
+        highRisks,
+        highOpportunities,
+        riskChartData,
+        opportunityChartData,
+        riskRatingCounts,
+        opportunityRatingCounts,
+        highestRiskScore,
+        highestOpportunityScore,
+        totalRiskScore: risks.reduce((sum: number, r: any) => sum + parseFloat(r.score), 0),
+        totalOpportunityScore: opportunities.reduce((sum: number, o: any) => sum + parseFloat(o.score), 0)
+    },
         sdgs
     })
 }

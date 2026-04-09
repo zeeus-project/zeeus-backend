@@ -316,3 +316,93 @@ export const OPPORTUNITY_RECOMMENDATIONS: Record<string, string> = {
     'Consumers & Governance (S4, G1)_Impact_Low': 'Small credibility boost; mainly hygiene/compliance with limited commercial effect.',
     'Consumers & Governance (S4, G1)_recommendation': 'Governance and consumer-trust opportunities align with SDG 16 Peace, Justice and Strong Institutions and SDG 12 Responsible Consumption and Production. How to act: Invest in privacy-by-design. Make product claims verifiable. Use governance strength as a competitive differentiator in B2B sales.'
 }
+
+
+// ============================================================
+// EXTERNAL RESOURCE LINKS PER CATEGORY
+// ============================================================
+
+export const RESOURCE_LINKS: Record<string, { title: string, url: string }[]> = {
+    'Climate (E1, E2)': [
+        { title: 'Corporate Carbon Footprint (GHG Protocol)', url: 'https://ghgprotocol.org/corporate-standard' },
+        { title: 'Product Carbon Footprint (GHG Protocol)', url: 'https://ghgprotocol.org/product-standard' },
+        { title: 'UK Government Emission Factors', url: 'https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2025' },
+        { title: 'SDG 13 Climate Action', url: 'https://sdgs.un.org/goals/goal13' },
+        { title: 'SDG 7 Affordable and Clean Energy', url: 'https://sdgs.un.org/goals/goal7' }
+    ],
+    'Water/Biodiversity (E3, E4)': [
+        { title: 'CEO Water Mandate', url: 'https://ceowatermandate.org' },
+        { title: 'Water Footprint Network', url: 'https://waterfootprint.org' },
+        { title: 'IUCN Biodiversity Standards', url: 'https://www.iucn.org' },
+        { title: 'SDG 6 Clean Water and Sanitation', url: 'https://sdgs.un.org/goals/goal6' },
+        { title: 'SDG 15 Life on Land', url: 'https://sdgs.un.org/goals/goal15' }
+    ],
+    'Circular Economy (E5)': [
+        { title: 'Ellen MacArthur Foundation', url: 'https://ellenmacarthurfoundation.org' },
+        { title: 'EU Circular Economy Action Plan', url: 'https://environment.ec.europa.eu/strategy/circular-economy-action-plan_en' },
+        { title: 'Cradle to Cradle Products Innovation Institute', url: 'https://www.c2ccertified.org' },
+        { title: 'SDG 12 Responsible Consumption', url: 'https://sdgs.un.org/goals/goal12' }
+    ],
+    'Communities (S3)': [
+        { title: 'UN Guiding Principles on Business and Human Rights', url: 'https://www.ohchr.org/sites/default/files/documents/publications/guidingprinciplesbusinesshr_en.pdf' },
+        { title: 'ISO 26000 Social Responsibility', url: 'https://www.iso.org/iso-26000-social-responsibility.html' },
+        { title: 'SDG 11 Sustainable Cities and Communities', url: 'https://sdgs.un.org/goals/goal11' },
+        { title: 'SDG 10 Reduced Inequalities', url: 'https://sdgs.un.org/goals/goal10' }
+    ],
+    'Consumers & Governance (S4, G1)': [
+        { title: 'GDPR Official Text', url: 'https://gdpr-info.eu' },
+        { title: 'UN Guidelines for Consumer Protection', url: 'https://unctad.org/topic/competition-and-consumer-protection/un-guidelines-for-consumer-protection' },
+        { title: 'OECD Corporate Governance Guidelines', url: 'https://www.oecd.org/corporate/principles-corporate-governance' },
+        { title: 'SDG 16 Peace, Justice and Strong Institutions', url: 'https://sdgs.un.org/goals/goal16' },
+        { title: 'SDG 12 Responsible Consumption', url: 'https://sdgs.un.org/goals/goal12' }
+    ],
+    'Water': [
+        { title: 'CEO Water Mandate', url: 'https://ceowatermandate.org' },
+        { title: 'Water Footprint Network', url: 'https://waterfootprint.org' },
+        { title: 'SDG 6 Clean Water and Sanitation', url: 'https://sdgs.un.org/goals/goal6' }
+    ],
+    'Pollution': [
+        { title: 'EU Zero Pollution Action Plan', url: 'https://environment.ec.europa.eu/strategy/zero-pollution-action-plan_en' },
+        { title: 'WHO Air Quality Guidelines', url: 'https://www.who.int/news-room/fact-sheets/detail/ambient-(outdoor)-air-quality-and-health' },
+        { title: 'SDG 3 Good Health and Well-being', url: 'https://sdgs.un.org/goals/goal3' }
+    ],
+    'Biodiversity': [
+        { title: 'IUCN Red List', url: 'https://www.iucnredlist.org' },
+        { title: 'Convention on Biological Diversity', url: 'https://www.cbd.int' },
+        { title: 'SDG 15 Life on Land', url: 'https://sdgs.un.org/goals/goal15' }
+    ],
+    'Circular Economy': [
+        { title: 'Ellen MacArthur Foundation', url: 'https://ellenmacarthurfoundation.org' },
+        { title: 'EU Circular Economy Action Plan', url: 'https://environment.ec.europa.eu/strategy/circular-economy-action-plan_en' },
+        { title: 'SDG 12 Responsible Consumption', url: 'https://sdgs.un.org/goals/goal12' }
+    ],
+    'Climate Change': [
+        { title: 'Corporate Carbon Footprint (GHG Protocol)', url: 'https://ghgprotocol.org/corporate-standard' },
+        { title: 'Science Based Targets initiative', url: 'https://sciencebasedtargets.org' },
+        { title: 'SDG 13 Climate Action', url: 'https://sdgs.un.org/goals/goal13' }
+    ],
+    'Own Workforce (S1)': [
+        { title: 'ILO Labour Standards', url: 'https://www.ilo.org/global/standards/lang--en/index.htm' },
+        { title: 'UN Global Compact Labour Principles', url: 'https://unglobalcompact.org/what-is-gc/mission/principles' },
+        { title: 'SDG 8 Decent Work and Economic Growth', url: 'https://sdgs.un.org/goals/goal8' }
+    ],
+    'Supply Chain (S2)': [
+        { title: 'UN Guiding Principles on Business and Human Rights', url: 'https://www.ohchr.org/sites/default/files/documents/publications/guidingprinciplesbusinesshr_en.pdf' },
+        { title: 'Responsible Business Alliance', url: 'https://www.responsiblebusiness.org' },
+        { title: 'SDG 8 Decent Work and Economic Growth', url: 'https://sdgs.un.org/goals/goal8' }
+    ],
+    'Communities (S3) Stage1': [
+        { title: 'ISO 26000 Social Responsibility', url: 'https://www.iso.org/iso-26000-social-responsibility.html' },
+        { title: 'SDG 11 Sustainable Cities and Communities', url: 'https://sdgs.un.org/goals/goal11' }
+    ],
+    'Consumers (S4)': [
+        { title: 'UN Guidelines for Consumer Protection', url: 'https://unctad.org/topic/competition-and-consumer-protection/un-guidelines-for-consumer-protection' },
+        { title: 'GDPR Official Text', url: 'https://gdpr-info.eu' },
+        { title: 'SDG 12 Responsible Consumption', url: 'https://sdgs.un.org/goals/goal12' }
+    ],
+    'Corporate Ethics (G1)': [
+        { title: 'OECD Anti-Bribery Convention', url: 'https://www.oecd.org/corruption/anti-bribery' },
+        { title: 'UN Global Compact Anti-Corruption Principle', url: 'https://unglobalcompact.org/what-is-gc/mission/principles/principle-10' },
+        { title: 'SDG 16 Peace, Justice and Strong Institutions', url: 'https://sdgs.un.org/goals/goal16' }
+    ]
+}
