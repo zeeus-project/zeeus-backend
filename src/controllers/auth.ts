@@ -17,7 +17,10 @@ export const register = async (req: Request, res: Response): Promise<void> => {
     )
 
     const token = jwt.sign({ userId: newUser.rows[0].id}, process.env.JWT_SECRET as string, { expiresIn: '7d' })
-    res.status(201).json({ token })
+    res.status(201).json({ 
+    token,
+    role: newUser.rows[0].role  // add this
+    })
 }
 
 
@@ -36,5 +39,13 @@ export const login = async (req: Request, res: Response): Promise<void> => {
         return
     }
     const token = jwt.sign({ userId: result.rows[0].id }, process.env.JWT_SECRET as string, { expiresIn: '7d' })
-    res.status(200).json({ token })
+    res.status(200).json({ 
+    token,
+    role: result.rows[0].role  // add this
+    })
+}
+
+export const getAllUsers = async (req: Request, res: Response): Promise<void> => {
+    const result = await pool.query('SELECT id, email, role, created_at FROM users')
+    res.status(200).json(result.rows)
 }

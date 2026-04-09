@@ -7,12 +7,20 @@ const impactMap: Record<string, number> = {
     }
 
 
-function getRating(score: number): string {
-        if (score >= 3.0) return 'High'
-        if (score >= 2.0) return 'Medium'
-        if (score >= 1) return 'Low'
-        if (score < 1) return 'Negligible'
-        return 'N/A'
+function getRatingRisk(score: number): string {
+        if (score >= 3.0) return 'Critical'
+        if (score >= 2.0) return 'Severe'
+        if (score >= 1) return 'Moderate'
+        if (score < 1 && score > 0) return 'Sustainable'
+        return 'Neutral'
+    }
+
+function getRatingOpportunity(score: number): string {
+        if (score >= 3.0) return 'Great'
+        if (score >= 2.0) return 'Sustainable'
+        if (score >= 1) return 'Reasonable'
+        if (score < 1 && score > 0 ) return 'Small'
+        return 'Neutral'
     }
 
 
@@ -34,7 +42,7 @@ export const calculateRiskScore = (
     const Probability = probabilityMap[probability] || 0
 
     const riskScore = Impact * Probability
-    const rating = getRating(riskScore)
+    const rating = getRatingRisk(riskScore)
 
     return { riskScore, rating }
 }
@@ -58,7 +66,7 @@ export const calculateOpportunityScore = (
     const Likelihood = likelihoodMap[likelihood] || 0
 
     const opportScore = Impact * Likelihood
-    const rating = getRating(opportScore)
+    const rating = getRatingOpportunity(opportScore)
 
     return { opportScore, rating }
 }

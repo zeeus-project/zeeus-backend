@@ -13,6 +13,7 @@ import recommendationsRoutes from './routes/recommendations'
 import aiRecommendationsRoutes from './routes/aiRecommendations'
 import calculateRoutes from './routes/calculate'
 import summaryRoutes from './routes/summary'
+import adminRoutes from './routes/admin'
 
 
 dotenv.config()
@@ -34,6 +35,7 @@ app.use('/evaluations', recommendationsRoutes)
 app.use('/evaluations', aiRecommendationsRoutes)
 app.use('/calculate', calculateRoutes)
 app.use('/evaluations', summaryRoutes)
+app.use('/admin', adminRoutes)
 app.use(cors())
 
 
