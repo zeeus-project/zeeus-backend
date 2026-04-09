@@ -11,6 +11,7 @@ import sdgRoutes from './routes/sdg'
 import resultsRoutes from './routes/results'
 import recommendationsRoutes from './routes/recommendations'
 import aiRecommendationsRoutes from './routes/aiRecommendations'
+import calculateRoutes from './routes/calculate'
 
 
 dotenv.config()
@@ -30,6 +31,8 @@ app.use('/evaluations', sdgRoutes)
 app.use('/evaluations', resultsRoutes)
 app.use('/evaluations', recommendationsRoutes)
 app.use('/evaluations', aiRecommendationsRoutes)
+app.use('/calculate', calculateRoutes)
+app.use(cors())
 
 
 // Health check
