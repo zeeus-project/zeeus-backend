@@ -10,6 +10,7 @@ import financialRoutes from './routes/financial'
 import sdgRoutes from './routes/sdg'
 import resultsRoutes from './routes/results'
 import recommendationsRoutes from './routes/recommendations'
+import aiRecommendationsRoutes from './routes/aiRecommendations'
 
 
 dotenv.config()
@@ -28,6 +29,7 @@ app.use('/evaluations', financialRoutes)
 app.use('/evaluations', sdgRoutes)
 app.use('/evaluations', resultsRoutes)
 app.use('/evaluations', recommendationsRoutes)
+app.use('/evaluations', aiRecommendationsRoutes)
 
 
 // Health check
