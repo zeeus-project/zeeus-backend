@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS evaluations (
   id SERIAL PRIMARY KEY,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   startup_name VARCHAR(255),
+  report_name VARCHAR(255),
   status VARCHAR(50) DEFAULT 'in_progress',
   created_at TIMESTAMP DEFAULT NOW(),
   updated_at TIMESTAMP DEFAULT NOW()
